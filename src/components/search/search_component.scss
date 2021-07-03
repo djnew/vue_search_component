@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+@import "search_variables";
+
+.search-wrapper {
+  width: $wrapper_width;
+  max-width: 100%;
+  font-family: $font;
+
+  &__center {
+    margin: 0 auto;
+  }
+}
+
+.search-flex {
+  display: flex;
+
+  &-1 {
+    flex: 1
+  }
+
+  &-wrap {
+    flex-wrap: wrap;
+  }
+
+  &-space-between {
+    justify-content: space-between;
+  }
+  &-space-around{
+    justify-content: space-around;
+  }
+}
+
+.search-align {
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
+}
+
+.search-select,
+.search-button,
+{
+  font-family: $font;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
+
+  &-clear {
+    background: transparent;
+    border-radius: 0;
+  }
+}
+
+@import "search_variables";
+
+.search-background {
+  background: $form_search_top_background_color;
+  background: $form_search_top_background_gradient;
+}
+
+.form-search {
+  box-sizing: border-box;
+
+  &-top {
+    padding: 36px 20px 28px;
+
+    &__select {
+      $parent: &;
+      width: 100%;
+      position: relative;
+      font-size: 18px;
+      height: 44px;
+      color: #2f2f2f;
+      padding: 0 35px 0 20px;
+      appearance: none;
+
+      &_container {
+        width: calc((100% - 130px) / 3);
+        position: relative;
+        box-sizing: border-box;
+        border-right: 1px solid transparent;
+
+        &:first-child {
+          #{$parent} {
+            border-radius: 3px 0 0 3px;
+          }
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          width: 1px;
+          height: 0;
+          border-top: 6px solid #5a768e;
+          border-left: 5px solid #fff;
+          border-right: 5px solid #fff;
+          z-index: 1;
+        }
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+
+    &__input {
+      font-size: 18px;
+      height: 44px;
+      color: #2f2f2f;
+      width: 100%;
+      box-sizing: border-box;
+      border: none;
+      border-radius: 3px 0 0 3px;
+      padding: 0 20px;
+      outline: none;
+
+      &_container {
+        width: calc(100% - 130px);
+      }
+    }
+
+    &__button {
+      width: 130px;
+      outline: none;
+      border: 0;
+      border-radius: 0 3px 3px 0;
+      background: $button_background_color;
+      height: 44px;
+      box-sizing: border-box;
+      transition: $transition_all;
+      color: #fff;
+      font-size: 20px;
+
+      &:hover {
+        background: darken($button_background_color, 10%);
+      }
+    }
+    .search-panels{
+      $search-panels: &;
+      margin: 28px 0 8px 0;
+      width: 100%;
+
+      &__price {
+        .search-panels__input {
+          width: 61%;
+          &-element{
+            width: 33%;
+          }
+        }
+
+        .search-panels__button {
+          width: 36%;
+        }
+      }
+
+      &__metric {
+        .search-panels__input {
+          width: 36%;
+          &-element{
+            width: calc((100% - 54px)/2);
+          }
+          &-text{
+            width: 54px;
+          }
+        }
+
+        .search-panels__button {
+          width: 61%;
+        }
+      }
+    }
+  }
+
+  &-bottom {
+    padding: 11px 20px 0 20px;
+    box-sizing: border-box;
+    height: 45px;
+    line-height: 23px;
+    background: $form_search_bottom_background_color;
+  }
+
+  .search-panel-price {
+    width: 100%;
+  }
+}
