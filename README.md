@@ -1,29 +1,28 @@
-# search
+# search component
 
-## Project setup
+## Установка зависимостей
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Запуск storybook
+```
+yarn storybook
+```
+
+стандартно после запуска вешается на [localhost:6006](http://localhost:6006)
+
+### Запуск приложения
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### Сборка приложения
 ```
 yarn build
-```
-
-### Run your unit tests
-```
-yarn test:unit
 ```
 
 ### Lints and fixes files
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

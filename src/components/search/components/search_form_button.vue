@@ -1,11 +1,11 @@
 <template>
   <button
-    class="search-panel__button"
     :style="{
       background: backgroundColor,
       borderColor: borderColor,
       color: textColor,
     }"
+    class="search-panel__button"
     @click.prevent="$emit('click')"
   >
     <slot>Кнопка</slot>
@@ -14,7 +14,6 @@
 
 <script>
 export default {
-  name: "search_panel_button",
   props: {
     backgroundColor: {
       type: String,
@@ -36,15 +35,15 @@ export default {
 @import "../search_variables";
 
 .search-panel__button {
-  width: 100%;
-  height: 42px;
-  font-size: 18px;
-  border-width: 1px;
-  border-style: solid;
   border-radius: 3px;
-  font-family: $font;
-  outline: none;
-  cursor: pointer;
+  border-style: solid;
+  border-width: 1px;
   box-shadow: none;
+  cursor: pointer;
+  font-family: $font;
+  font-size: 18px;
+  height: 44px;
+  outline: none;
+  width: 100%;
 }
 </style>

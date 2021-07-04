@@ -2,9 +2,9 @@
 @import "search_variables";
 
 .search-wrapper {
-  width: $wrapper_width;
-  max-width: 100%;
   font-family: $font;
+  max-width: 100%;
+  width: $wrapper_width;
 
   &__center {
     margin: 0 auto;
@@ -13,6 +13,7 @@
 
 .search-flex {
   display: flex;
+  flex-direction: row;
 
   &-1 {
     flex: 1
@@ -25,29 +26,22 @@
   &-space-between {
     justify-content: space-between;
   }
-  &-space-around{
+
+  &-space-around {
     justify-content: space-around;
   }
 }
+.search-visible-small{
+  display: none;
 
-.search-align {
-  &-center {
-    text-align: center;
-  }
-
-  &-right {
-    text-align: right;
+  @media (max-width: 424px) {
+    display: flex;
   }
 }
 
 .search-select,
 .search-button,
 {
-  font-family: $font;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  box-shadow: none;
 
   &-clear {
     background: transparent;
@@ -63,126 +57,172 @@
 }
 
 .form-search {
+  $form-search: &;
   box-sizing: border-box;
+
+  &-divider {
+    box-sizing: border-box;
+    border-right: 1px solid transparent;
+
+    &:last-child {
+      border: none;
+    }
+
+  }
 
   &-top {
     padding: 36px 20px 28px;
 
-    &__select {
-      $parent: &;
-      width: 100%;
-      position: relative;
-      font-size: 18px;
-      height: 44px;
-      color: #2f2f2f;
-      padding: 0 35px 0 20px;
-      appearance: none;
+    &__select_block {
+      border-radius: 3px 0 0 3px;
+      overflow: hidden;
+      width: calc(100% - 130px);
+      @media (max-width: 767px) {
+        border-radius: 3px 3px 0 0;
+        width: 100%;
+      }
 
-      &_container {
-        width: calc((100% - 130px) / 3);
-        position: relative;
-        box-sizing: border-box;
-        border-right: 1px solid transparent;
-
-        &:first-child {
-          #{$parent} {
-            border-radius: 3px 0 0 3px;
-          }
-        }
-
-        &::after {
-          content: "";
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          width: 1px;
-          height: 0;
-          border-top: 6px solid #5a768e;
-          border-left: 5px solid #fff;
-          border-right: 5px solid #fff;
-          z-index: 1;
-        }
-
-        &:last-child {
+      #{$form-search}-divider {
+        @media (max-width: 767px) {
+          border-bottom: 1px solid transparent;
           border-right: none;
         }
       }
     }
 
-    &__input {
-      font-size: 18px;
-      height: 44px;
-      color: #2f2f2f;
-      width: 100%;
-      box-sizing: border-box;
-      border: none;
+    &__input_container {
       border-radius: 3px 0 0 3px;
-      padding: 0 20px;
-      outline: none;
+      overflow: hidden;
+      width: calc(100% - 130px);
 
-      &_container {
-        width: calc(100% - 130px);
+      @media (max-width: 767px) {
+        border-radius: 3px 3px 0 0;
+        width: 100%;
       }
     }
 
-    &__button {
-      width: 130px;
-      outline: none;
-      border: 0;
-      border-radius: 0 3px 3px 0;
-      background: $button_background_color;
-      height: 44px;
-      box-sizing: border-box;
-      transition: $transition_all;
-      color: #fff;
-      font-size: 20px;
-
-      &:hover {
-        background: darken($button_background_color, 10%);
-      }
-    }
-    .search-panels{
+    .search-panels {
       $search-panels: &;
       margin: 28px 0 8px 0;
       width: 100%;
 
+      .search-panels__input {
+        border-radius: 3px;
+        overflow: hidden;
+
+        #{$form-search}-divider {
+          @media (max-width: 424px) {
+            border-bottom: 1px solid transparent;
+            border-right: none;
+          }
+        }
+      }
+
       &__price {
         .search-panels__input {
           width: 61%;
-          &-element{
+          @media (max-width: 767px) {
+            width: 100%;
+          }
+
+          & > * {
             width: 33%;
+            @media (max-width: 424px) {
+              width: 100%;
+            }
+          }
+
+          & + .search-panels__button {
+            @media (max-width: 767px) {
+              margin-top: 14px;
+            }
           }
         }
 
         .search-panels__button {
           width: 36%;
+          @media (max-width: 767px) {
+            width: 100%;
+          }
         }
       }
 
       &__metric {
         .search-panels__input {
           width: 36%;
-          &-element{
-            width: calc((100% - 54px)/2);
+          @media (max-width: 767px) {
+            width: 100%;
           }
-          &-text{
+
+          #{$form-search}-divider {
+            @media (max-width: 424px) {
+              border-bottom: 1px solid transparent;
+              border-right: none;
+            }
+          }
+
+          &_element {
+            width: calc((100% - 54px) / 2);
+            @media (max-width: 424px) {
+              width: calc(100% - 54px);
+            }
+          }
+
+          &-text {
             width: 54px;
           }
         }
 
         .search-panels__button {
           width: 61%;
+
+          & + .search-panels__input {
+            @media (max-width: 767px) {
+              margin-top: 14px;
+            }
+          }
+
+          @media (max-width: 767px) {
+            width: 100%;
+          }
         }
       }
     }
   }
 
   &-bottom {
-    padding: 11px 20px 0 20px;
-    box-sizing: border-box;
-    height: 45px;
-    line-height: 23px;
     background: $form_search_bottom_background_color;
+    box-sizing: border-box;
+    line-height: 23px;
+    padding: 11px 20px 11px 20px;
+
+    .search-align {
+      &-left {
+        text-align: left;
+        @media (max-width: 600px) {
+          text-align: center;
+        }
+      }
+
+      &-right {
+        text-align: right;
+        @media (max-width: 600px) {
+          text-align: center;
+        }
+      }
+    }
+
+    & > div {
+      @media (max-width: 600px) {
+        width: 100%;
+      }
+
+      & + div {
+        @media (max-width: 600px) {
+          margin-top: 14px
+        }
+      }
+    }
   }
 
   .search-panel-price {

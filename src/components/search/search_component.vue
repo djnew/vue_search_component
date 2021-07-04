@@ -10,109 +10,106 @@
           search-background
         "
       >
-        <div class="form-search-top__select_container" v-show="!showInput">
-          <select
-            name="city_search"
-            class="search-select form-search-top__select"
-          >
-            <option value="">Москва</option>
-            <option value="">Казань</option>
-          </select>
+        <div
+          v-show="!showInput"
+          class="
+            form-search-top__select_block
+            search-flex search-flex-space-between search-flex-wrap
+          "
+        >
+          <search-form-select
+            v-model="form.city"
+            :options="['Москва', 'Сызрань']"
+            class="form-search-divider"
+          />
+          <search-form-select
+            v-model="form.type"
+            :options="['Купить', 'Продать']"
+            class="form-search-divider"
+          />
+          <search-form-select
+            v-model="form.object"
+            :options="['Офис', 'Новостройка']"
+          />
         </div>
-        <div class="form-search-top__select_container" v-show="!showInput">
-          <select
-            name="object_search"
-            class="search-select form-search-top__select"
-          >
-            <option value="">Купить</option>
-            <option value="">Продать</option>
-          </select>
-        </div>
-        <div class="form-search-top__select_container" v-show="!showInput">
-          <select
-            name="type_search"
-            class="search-select form-search-top__select"
-          >
-            <option value="">Офис</option>
-            <option value="">Новостройка</option>
-          </select>
-        </div>
-        <div class="form-search-top__input_container" v-show="showInput">
-          <input
-            type="text"
+        <div v-show="showInput" class="form-search-top__input_container">
+          <search-form-input
             v-model="form.search"
-            class="form-search-top__input"
             placeholder="Введите название объекта (бизнес-центра, торгового центра, новостройки, логопарка)"
           />
         </div>
-        <button type="submit" class="search-button form-search-top__button">
-          Найти
-        </button>
+        <search-form-button-submit />
         <div
+          v-if="panels.price.active"
           class="
             search-panels search-panels__price
-            search-flex search-flex-space-between
+            search-flex search-flex-space-between search-flex-wrap
           "
-          v-if="panels.price.active"
         >
           <div
-            class="search-panels__input search-flex search-flex-space-between"
+            class="
+              search-panels__input
+              search-flex search-flex-space-between search-flex-wrap
+            "
           >
-            <input
-              type="text"
-              class="search-panels__input-element"
+            <search-form-input
               v-model="form.minPrice"
+              :is-number="true"
+              class="form-search-divider"
               placeholder="От"
             />
-            <input
-              type="text"
-              class="search-panels__input-element"
+            <search-form-input
               v-model="form.maxPrice"
+              :is-number="true"
+              class="form-search-divider"
               placeholder="До"
             />
-            <select
-              name=""
-              class="search-panels__input-element"
+            <search-form-select
               v-model="form.timePrice"
-            >
-              <option>₽/месяц</option>
-              <option>₽/год</option>
-            </select>
+              :options="['₽/месяц', '₽/год']"
+            />
           </div>
           <div class="search-panels__button">
-            <search-panel-button @click="showPanel"
-              >Добавить метраж</search-panel-button
-            >
+            <search-form-button @click="showForm"
+              >Добавить метраж
+            </search-form-button>
           </div>
         </div>
         <div
+          v-if="panels.metric.active"
           class="
             search-panels search-panels__metric
-            search-flex search-flex-space-between
+            search-flex search-flex-space-between search-flex-wrap
           "
-          v-if="panels.metric.active"
         >
           <div class="search-panels__button">
-            <search-panel-button @click="showPanel"
-              >Добавить цену</search-panel-button
-            >
+            <search-form-button @click="showForm"
+              >Добавить цену
+            </search-form-button>
           </div>
           <div
-            class="search-panels__input search-flex search-flex-space-between"
+            class="
+              search-panels__input
+              search-flex search-flex-space-between search-flex-wrap
+            "
           >
-            <input
-              type="text"
-              class="search-panels__input-element"
+            <search-form-input
               v-model="form.minMetric"
+              :is-number="true"
+              class="form-search-divider search-panels__input_element"
               placeholder="От"
             />
-            <input
-              type="text"
-              class="search-panels__input-element"
+            <search-form-text-panel
+              class="form-search-divider search-visible-small"
+            >
+              м<sup>2</sup></search-form-text-panel
+            >
+            <search-form-input
+              class="search-panels__input_element"
               v-model="form.maxMetric"
               placeholder="До"
             />
-            <div class="search-panels__input-text">м<sup>2</sup></div>
+            <search-form-text-panel> м<sup>2</sup></search-form-text-panel>
           </div>
         </div>
       </div>
@@ -122,20 +119,20 @@
           search-flex search-flex-space-between search-flex-wrap
         "
       >
-        <div class="search-flex-1">
-          <search-radio v-model="showInput">
+        <div class="search-flex-1 search-align-left">
+          <search-form-radio v-model="showInput">
             <template #unchecked>Основной поиск</template>
             <template #checked>Искать по названию</template>
-          </search-radio>
+          </search-form-radio>
           <span></span>
         </div>
-        <div class="search-flex-1 search-align-right">
-          <search-icon-button
+        <div v-if="!showInput" class="search-align-right">
+          <search-form-icon-button
             v-for="(panel, index) in panels"
             :key="index"
             v-model="panel.active"
             >{{ panel.label }}
-          </search-icon-button>
+          </search-form-icon-button>
         </div>
       </div>
     </form>
@@ -143,16 +140,24 @@
 </template>
 
 <script>
-import searchRadio from "@/components/search/components/search_radio";
-import searchIconButton from "@/components/search/components/search_icon_button";
-import searchPanelButton from "@/components/search/components/search_panel_button";
+import searchFormRadio from "./components/search_form_radio.vue";
+import searchFormIconButton from "./components/search_form_icon_button.vue";
+import searchFormButton from "./components/search_form_button.vue";
+import searchFormSelect from "./components/search_form_select.vue";
+import searchFormInput from "./components/search_form_input.vue";
+import searchFormTextPanel from "./components/search_form_text_panel.vue";
+import searchFormButtonSubmit from "./components/search_form_button_submit.vue";
 
 export default {
-  name: "search",
+  name: "SearchComponent",
   components: {
-    searchRadio,
-    searchIconButton,
-    searchPanelButton,
+    searchFormRadio,
+    searchFormIconButton,
+    searchFormButton,
+    searchFormSelect,
+    searchFormInput,
+    searchFormTextPanel,
+    searchFormButtonSubmit,
   },
   data() {
     return {
@@ -191,10 +196,16 @@ export default {
         this.panels.price.active = !val;
       }
     },
+    showInput: function showInput(val) {
+      if (val) {
+        this.panels.price.active = false;
+        this.panels.metric.active = false;
+      }
+    },
   },
   mounted() {},
   methods: {
-    showPanel(name) {
+    showForm(name) {
       console.log(typeof name, name);
       if (name) {
         for (let key in this.panels) {
@@ -217,7 +228,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @import "search_component";
 </style>

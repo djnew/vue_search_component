@@ -1,17 +1,17 @@
 <template>
   <label
-    class="search-button search-button-clear form-search-bottom__button"
     :class="{ active: value }"
     :style="textStyle"
+    class="search-button search-button-clear form-search-icon__button"
   >
-    <input type="checkbox" :value="value" @change="$emit('input', !value)" />
-    <i :style="{ borderColor: this.color }" /><slot></slot>
+    <input :value="value" type="checkbox" @change="$emit('input', !value)" />
+    <i :style="{ borderColor: this.color }" />
+    <span><slot></slot></span>
   </label>
 </template>
 
 <script>
 export default {
-  name: "search_icon_button",
   props: {
     value: {
       type: Boolean,
@@ -40,11 +40,11 @@ export default {
 @import "../search_variables";
 
 .search-button {
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
   font-family: $font;
   outline: none;
-  border: none;
-  cursor: pointer;
-  box-shadow: none;
 
   &-clear {
     background: transparent;
@@ -53,47 +53,57 @@ export default {
 }
 
 .form-search {
-  &-bottom {
+  &-icon {
     &__button {
-      transition: $transition_all;
       font-size: 16px;
+      transition: $transition_all;
+
       input {
         display: none;
       }
 
-      & > i {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        border-width: 2px;
-        border-style: solid;
-        box-sizing: border-box;
+      &:first-child {
+        & > i {
+          margin-left: 0;
+        }
+      }
+      & > span {
         vertical-align: middle;
+      }
+
+      & > i {
+        border-radius: 50%;
+        border-style: solid;
+        border-width: 2px;
+        box-sizing: border-box;
+        display: inline-block;
+        height: 18px;
         margin: 0 10px 0 24px;
         position: relative;
         transition: $transition_all;
+        vertical-align: middle;
+        width: 18px;
 
         &::after {
-          width: 8px;
           height: 0;
+          width: 8px;
         }
 
         &::before {
-          width: 0;
           height: 8px;
+          width: 0;
         }
 
         &::before,
         &::after {
+          border-color: inherit;
+          border-style: solid;
+          border-width: 1px;
           content: "";
+          left: 50%;
           position: absolute;
           top: 50%;
-          left: 50%;
           transform: translate(-50%, -50%);
-          border-width: 1px;
-          border-style: solid;
-          border-color: inherit;
         }
       }
 
