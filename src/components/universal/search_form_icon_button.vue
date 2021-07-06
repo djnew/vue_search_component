@@ -1,7 +1,7 @@
 <template>
   <label
     :class="{ active: value }"
-    :style="textStyle"
+    :style="styleVariant"
     class="search-button search-button-clear form-search-icon__button"
   >
     <input :value="value" type="checkbox" @change="$emit('input', !value)" />
@@ -27,7 +27,7 @@ export default {
     },
   },
   computed: {
-    textStyle() {
+    styleVariant() {
       return {
         color: !this.value ? this.color : this.activeColor,
       };
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../search_variables";
+@import "../../styles/variables";
 
 .search-button {
   border: none;
@@ -56,7 +56,7 @@ export default {
   &-icon {
     &__button {
       font-size: 16px;
-      transition: $transition_all;
+      transition: $transition_default_all;
 
       input {
         display: none;
@@ -80,7 +80,7 @@ export default {
         height: 18px;
         margin: 0 10px 0 24px;
         position: relative;
-        transition: $transition_all;
+        transition: $transition_default_all;
         vertical-align: middle;
         width: 18px;
 

@@ -1,10 +1,6 @@
 <template>
   <button
-    :style="{
-      background: backgroundColor,
-      borderColor: borderColor,
-      color: textColor,
-    }"
+    :style="styleVariant"
     class="search-panel__button"
     @click.prevent="$emit('click')"
   >
@@ -28,11 +24,20 @@ export default {
       default: "#416983",
     },
   },
+  computed: {
+    styleVariant() {
+      return {
+        background: this.backgroundColor,
+        borderColor: this.borderColor,
+        color: this.textColor,
+      };
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../search_variables";
+@import "../../styles/variables";
 
 .search-panel__button {
   border-radius: 3px;

@@ -1,11 +1,11 @@
 <template>
   <div class="form-search__select_container">
     <select
-      name="city_search"
-      class="form-search__select"
       ref="select"
-      :style="{ background: backgroundColor, color: color }"
-      @change="$emit('input', !value)"
+      :style="styleVariant"
+      class="form-search__select"
+      name="city_search"
+      @change="$emit('input', value)"
     >
       <option v-for="option in options" :key="option" value="">
         {{ option }}
@@ -36,11 +36,19 @@ export default {
       default: "#2f2f2f",
     },
   },
+  computed: {
+    styleVariant() {
+      return {
+        background: this.backgroundColor,
+        color: this.color,
+      };
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../search_variables";
+@import "../../styles/variables";
 
 .form-search {
   &__select {
@@ -68,17 +76,17 @@ export default {
       }
 
       &::after {
-        content: "";
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        width: 1px;
-        height: 0;
-        border-top: 6px solid #5a768e;
         border-left: 5px solid #fff;
         border-right: 5px solid #fff;
-        z-index: 1;
+        border-top: 6px solid #5a768e;
+        content: "";
+        height: 0;
         pointer-events: none;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 1px;
+        z-index: 1;
       }
     }
   }

@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../search_variables";
+@import "../../styles/variables";
 
 .form-search__input {
   border: none;
@@ -43,6 +43,10 @@ export default {
   padding: 0 20px;
   width: 100%;
   text-overflow: ellipsis;
+
+  &::placeholder {
+    color: inherit;
+  }
 
   &[type="number"] {
     -moz-appearance: textfield;

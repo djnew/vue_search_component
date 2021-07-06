@@ -30,7 +30,7 @@ export default {
     },
   },
   computed: {
-    style: function style() {
+    styleVariant() {
       return {
         color: this.color,
         background: this.backgroundColor,

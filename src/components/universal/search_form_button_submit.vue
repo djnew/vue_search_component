@@ -1,5 +1,5 @@
 <template>
-  <button class="form-search__button" type="submit" :style="style">
+  <button class="form-search__button" type="submit" :style="styleVariant">
     <slot>Найти</slot>
   </button>
 </template>
@@ -19,7 +19,7 @@ export default {
     },
   },
   computed: {
-    style: function style() {
+    styleVariant() {
       return {
         background: this.backgroundColor,
         color: this.textColor,
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../search_variables";
+@import "../../styles/variables";
 
 .form-search__button {
   border: 0;
@@ -39,7 +39,7 @@ export default {
   font-size: 20px;
   height: 44px;
   outline: none;
-  transition: $transition_all;
+  transition: $transition_default_all;
   width: 130px;
   cursor: pointer;
 

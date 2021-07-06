@@ -140,13 +140,13 @@
 </template>
 
 <script>
-import searchFormRadio from "./components/search_form_radio.vue";
-import searchFormIconButton from "./components/search_form_icon_button.vue";
-import searchFormButton from "./components/search_form_button.vue";
-import searchFormSelect from "./components/search_form_select.vue";
-import searchFormInput from "./components/search_form_input.vue";
-import searchFormTextPanel from "./components/search_form_text_panel.vue";
-import searchFormButtonSubmit from "./components/search_form_button_submit.vue";
+import searchFormRadio from "../universal/search_form_radio.vue";
+import searchFormIconButton from "../universal/search_form_icon_button.vue";
+import searchFormButton from "../universal/search_form_button.vue";
+import searchFormSelect from "../universal/search_form_select.vue";
+import searchFormInput from "../universal/search_form_input.vue";
+import searchFormTextPanel from "../universal/search_form_text_panel.vue";
+import searchFormButtonSubmit from "../universal/search_form_button_submit.vue";
 
 export default {
   name: "SearchComponent",
