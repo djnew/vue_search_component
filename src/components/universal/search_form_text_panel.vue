@@ -1,7 +1,7 @@
 <template>
   <div :style="{ width: width }">
     <div
-      :style="style"
+      :style="styleVariant"
       class="search-flex-align-center form-search__text_panel"
     >
       <span><slot></slot></span>
